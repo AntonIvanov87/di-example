@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- instantiation using constructor -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <constructor-arg ref="dataSource"/> <!-- there are also index and type attrs to resolve ambiguities -->
+    </bean>
+
+    <bean class="ru.hh.diexample.users.UserSpringJDBCDAO"> <!-- id is not necessary: we only need to reference dao bean by type -->
+        <constructor-arg ref="jdbcTemplate"/>
+    </bean>
+
+</beans>
